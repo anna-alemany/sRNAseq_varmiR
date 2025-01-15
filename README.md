@@ -1,16 +1,18 @@
 # sRNAseq_varmiR
 In this repository, I include the scripts used to preprocess small RNA sequencing (sRNAseq) data. In addition, I include scripts developed to detect miRNA with variable expression patterns in a group versus another
 
-## Fastq file preprocessing
+## Fastq file preprocessing, mapping and deduplication
 
 We assume that single end sequencing was performed. Our reads start with a 12nt long UMI, according to the standard practices in Diagenode (https://www.diagenode.com/en/p/D-Plex-Small-RNA-seq-Library-Prep-x24).
 
 1) Trimming
 2) Removing UMI sequence to the read, and appending it to the read name with a "_" (for posterior use of umitools)
-3) Ribosomal depletion (`./preprocessing/ribodep.sh`)
-4) 
+3) Ribosomal depletion (`./preprocessing/ribodep.sh $fastq`)
 
-## Mapping
+4) Mapping
+
+5) Deduplication (`./preprocessing/dedup.sh $bamfile`)
+   This is done with fumi_tools (https://ccb-gitlab.cs.uni-saarland.de/tobias/fumi_tools)
 
 ## Count table with fastMGcount
 
