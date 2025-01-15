@@ -9,13 +9,18 @@ We assume that single end sequencing was performed. Our reads start with a 12nt 
 2) Removing UMI sequence to the read, and appending it to the read name with a "_" (for posterior use of umitools)
 3) Ribosomal depletion (`./preprocessing/ribodep.sh $fastq`)
 
-4) Mapping
+4) Mapping (`./preprocessing/map.sh $fastq`)
+   This has been done using STAR. We recommend the genome and gtf used in the MGcount original paper (https://filedn.com/lTnUWxFTA93JTyX3Hvbdn2h/mgcount/UserGuide.html), which can be obtained by:
+   ```
+   wget https://filedn.com/lTnUWxFTA93JTyX3Hvbdn2h/mgcount/integrated_annotations_gtf.zip
+   unzip integrated_annotations_gtf.zip -d annotations_gtf
+   ```
 
-5) Deduplication (`./preprocessing/dedup.sh $bamfile`)
+6) Deduplication (`./preprocessing/dedup.sh $bamfile`)
    This is done with fumi_tools (https://ccb-gitlab.cs.uni-saarland.de/tobias/fumi_tools)
 
 ## Count table with fastMGcount
 
 ```
-sbatch -t 05:00:00 --mem=50G --wrap="./fastMGcount/submit_mgcount.sh T2DvsND_MGcount T2DvsND list_bamfiles.txt ./mgcount_human/Homo_sapiens.GRCh38.custom.gtf"
+sbatch -t 05:00:00 --mem=50G --wrap="./fastMGcount/submit_mgcount.sh T2DvsND_MGcount T2DvsND list_bamfiles.txt ./fastMGcount/Homo_sapiens.GRCh38.custom.gtf"
 ```
