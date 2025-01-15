@@ -45,11 +45,11 @@ This are the variables:
 ## Identification of variable miRNA in T2D
 Using DESeq2 (https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8), we obtained median-of-ratios normalized count tables. This can be achieved using the script: 
 ```
-./var_miRNA/deseq2.R
+./varmiRNA/deseq2.R
 ```
 , that uses the count tables provided by fastMGcount. 
 
 Next, we performed Principal Component analysis and calculated variance and corresponding error bars in miRNA expression per group to identify variable miRNA in each group. This can be achieved by running the script: 
 ```
-./var_miRNA/PCA_diff_expr.py
+./varmiRNA/PCA_diff_expr.py
 ```
