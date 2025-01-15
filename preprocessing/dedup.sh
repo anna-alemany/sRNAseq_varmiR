@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # call the script together with the bamfile
+# the script works with 8 threads and 100G memory, make sure to have allocated resources.
 
 bam=$1
 
