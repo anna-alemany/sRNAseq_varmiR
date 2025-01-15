@@ -21,6 +21,25 @@ We assume that single end sequencing was performed. Our reads start with a 12nt 
 
 ## Count table with fastMGcount
 
+For this project, we wrote a faster version of MGcount, that we call fastMGcount. It can be found in this repository. We still use the GTF that was published with the original software (see above). We don't provide the GTF in this repository for size reasons. 
+To call the fastMGcount pipeline, one can use the provided `submit_mgcount.sh` wrapper as follows: 
+
 ```
-sbatch -t 05:00:00 --mem=50G --wrap="./fastMGcount/submit_mgcount.sh T2DvsND_MGcount T2DvsND list_bamfiles.txt ./fastMGcount/Homo_sapiens.GRCh38.custom.gtf"
+sbatch -t 05:00:00 --mem=50G --wrap="./fastMGcount/submit_mgcount.sh ${output_directory} ${output_name} ${list_bamfiles} ${gtf_file}"
 ```
+
+This are the variables:
+* ${output_directory}: string with name for output directory
+* ${output_name}: string providing prefix for output files
+* ${list_bamfiles}: file containing all BAM files and short names to be provided to the fastMGcount software. It is a tsv file, that reads as:
+   ```
+   R155ND_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R155ND
+   R167ND_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R167ND
+   R171ND_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R171ND
+   R185T2D_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R185T2D
+   R195T2D_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R195T2D
+   R201T2D_trimmed_R1.nonRiboAligned.sortedByCoord.out.dedup.srt.bam	R201T2D
+   ```
+* {gtf_file}: gtf file (see above)
+
+  
